@@ -14,6 +14,18 @@ exports.checkID = (req, res, next, val) => {
   next();
 };
 
+exports.checkBody = (req, res, next) => {
+  const name = req.body.name;
+  const price = req.body.price;
+  if (!name || !price) {
+    return res.status(400).json({
+      status: 'fail',
+      message: 'you must enter name and price'
+    });
+  }
+  next();
+};
+
 exports.getAllTours = (req, res) => {
   console.log(req.requestTime);
   res.status(200).json({
